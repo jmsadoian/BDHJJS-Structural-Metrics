@@ -26,6 +26,7 @@ public class NumberOfVariableDeclarations extends AbstractCheck {
 
   @Override
   public void visitToken(DetailAST ast) {
+    count = 0;
     // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
     DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
     // count the number of direct children of the OBJBLOCK
