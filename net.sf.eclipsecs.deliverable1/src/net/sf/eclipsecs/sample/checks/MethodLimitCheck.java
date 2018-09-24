@@ -36,7 +36,7 @@ public class MethodLimitCheck extends AbstractCheck {
     int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
     // report error if limit is reached
     if (methodDefs > max) {
-      log(ast.getLineNo(), "methodlimit", max);
+      log(ast.getLineNo(), "methodlimit", methodDefs, max);
     }
   }
 }
