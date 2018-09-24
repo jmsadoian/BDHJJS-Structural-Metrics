@@ -18,5 +18,9 @@
             <alternative-name internal-name="net.sf.eclipsecs.sample.checks.NumberOfComments" />
             <description>%NumberOfComments.desc</description>
         </rule-metadata>
+		<rule-metadata name="%NumberOfVariableDeclarations.name" internal-name="NumberOfVariableDeclarations" parent="TreeWalker">
+            <alternative-name internal-name="net.sf.eclipsecs.sample.checks.NumberOfVariableDeclarations" />
+            <description>%NumberOfVariableDeclarations.desc</description>
+        </rule-metadata>
     </rule-group-metadata>
 </checkstyle-metadata>
