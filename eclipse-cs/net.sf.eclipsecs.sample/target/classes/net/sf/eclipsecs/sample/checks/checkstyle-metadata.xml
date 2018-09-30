@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE checkstyle-metadata PUBLIC
+"-//eclipse-cs//DTD Check Metadata 1.1//EN"
+"http://eclipse-cs.sourceforge.net/dtds/checkstyle-metadata_1_1.dtd">
+<checkstyle-metadata>
+    <rule-group-metadata name="My custom checks"  priority="1600">
+        <description>%MyCustomChecks.desc</description>
+
+        <rule-metadata name="%MethodLimit.name" internal-name="MethodLimit" parent="TreeWalker">
+            <alternative-name internal-name="net.sf.eclipsecs.sample.checks.MethodLimitCheck" />
+            <description>%MethodLimit.desc</description>
+            <property-metadata name="max" datatype="Integer" default-value="30">
+                <description>The maximum number of allowed methods.</description>
+            </property-metadata>
+            <quickfix classname="net.sf.eclipsecs.sample.checks.MethodLimitQuickfix" />
+        </rule-metadata>
+        <rule-metadata name="%NewCheck.name" internal-name="NewCheck" parent="TreeWalker">
+			<alternative-name internal-name="net.sf.eclipsecs.sample.checks.NewCheck" />
+            <description>%NewCheck.desc</description>
+            <property-metadata name="maxlinesofcomments" datatype="Integer" default-value="30">
+                <description>The maximum number of lines of comments allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxcomments" datatype="Integer" default-value="30">
+                <description>The maximum number of comments allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxloops" datatype="Integer" default-value="30">
+                <description>The maximum number of looping statements allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxvariables" datatype="Integer" default-value="30">
+                <description>The maximum number of variable declarations allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxexpressions" datatype="Integer" default-value="30">
+                <description>The maximum number of expression statements allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxtypecasts" datatype="Integer" default-value="30">
+                <description>The maximum number of type-casts allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxoperators" datatype="Integer" default-value="30">
+                <description>The maximum number of operators allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxoperands" datatype="Integer" default-value="30">
+                <description>The maximum number of operands allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxhalsteadlength" datatype="Integer" default-value="30">
+                <description>The maximum halstead length allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxhalsteadvocabulary" datatype="Integer" default-value="30">
+                <description>The maximum halstead vocabulary allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxhalsteadvolume" datatype="Integer" default-value="30">
+                <description>The maximum halstead volume allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxhalsteaddifficulty" datatype="Integer" default-value="30">
+                <description>The maximum halstead difficulty allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxhalsteadeffort" datatype="Integer" default-value="30">
+                <description>The maximum halstead effort allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxlocalmethodrefs" datatype="Integer" default-value="30">
+                <description>The maximum local method calls allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxexternalmethodrefs" datatype="Integer" default-value="30">
+                <description>The maximum external method calls allowed.</description>
+            </property-metadata>
+            <property-metadata name="maxmaintainabilityindex" datatype="Integer" default-value="30">
+                <description>The maximum maintainability index allowed.</description>
+            </property-metadata>
+		</rule-metadata>
+    </rule-group-metadata>
+</checkstyle-metadata>
