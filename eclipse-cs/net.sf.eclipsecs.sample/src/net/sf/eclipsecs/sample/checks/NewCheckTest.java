@@ -100,8 +100,79 @@ public class NewCheckTest {
 
   @Test
   public void testClassifyNode() 
-  {    
-    fail("Not yet implemented");
+  {
+    // Create a node to pass into classify node
+    DetailAST node = new DetailAST();
+    int temp = 0;
+    int size = 0;
+    
+    node.setType(TokenTypes.COMMENT_CONTENT);
+    temp = check.commentContents;
+    check.classifyNode(node);
+    if (check.commentContents != temp + 1) fail("commentContents was not incremented given a COMMENT_CONTENT node");
+    
+    node.setType(TokenTypes.SINGLE_LINE_COMMENT);
+    temp = check.singleLineComments;
+    check.classifyNode(node);
+    if (check.singleLineComments != temp + 1) fail("singleLineComments was not incremented given a SINGLE_LINE_COMMENT node");
+    
+    node.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+    temp = check.blockCommentBegins;
+    check.classifyNode(node);
+    if (check.blockCommentBegins != temp + 1) fail("blockCommentBegins was not incremented given a BLOCK_COMMENT_BEGIN node");
+    
+    node.setType(TokenTypes.BLOCK_COMMENT_END);
+    temp = check.blockCommentEnds;
+    check.classifyNode(node);
+    if (check.blockCommentEnds != temp + 1) fail("blockCommentEnds was not incremented given a BLOCK_COMMENT_END node");
+    
+    node.setType(TokenTypes.LITERAL_WHILE);
+    temp = check.loopCount;
+    check.classifyNode(node);
+    if (check.loopCount != temp + 1) fail("loopCount was not incremented given a LITERAL_WHILE node");
+    
+    node.setType(TokenTypes.VARIABLE_DEF);
+    temp = check.variableCount;
+    check.classifyNode(node);
+    if (check.variableCount != temp + 1) fail("variableCount was not incremented given a VARIABLE_DEF node");
+    
+    node.setType(TokenTypes.EXPR);
+    temp = check.expressionCount;
+    check.classifyNode(node);
+    if (check.expressionCount != temp + 1) fail("expressionCount was not incremented given a EXPR node");
+    
+    node.setType(TokenTypes.TYPECAST);
+    temp = check.typecastCount;
+    check.classifyNode(node);
+    if (check.typecastCount != temp + 1) fail("typecastCount was not incremented given a TYPECAST node");
+    
+    node.setType(TokenTypes.BAND);
+    temp = check.operatorCount;
+    check.uniqueOperators = new HashSet<>();
+    size = check.uniqueOperators.size();
+    check.classifyNode(node);
+    if (check.operatorCount != temp + 1) fail("operatorCount was not incremented given a BAND node");
+    if (check.uniqueOperators.size() != size + 1) fail("uniqueOperators was not incremented given a BAND node"); 
+    
+    node.setType(TokenTypes.IDENT);
+    temp = check.operandCount;
+    check.uniqueOperands = new HashSet<>();
+    size = check.uniqueOperands.size();
+    check.classifyNode(node);
+    if (check.operandCount != temp + 1) fail("operandCount was not incremented given a IDENT node");
+    if (check.uniqueOperands.size() != size + 1) fail("uniqueOperands was not incremented given a IDENT node");
+    
+    node.setLineNo(10);
+    check.programLength = 0;
+    check.classifyNode(node);
+    if (check.programLength != 10) fail("programLength was not incremented given a node with a larger line number");
+    
+    // TODO: Test (node.getType() == TokenTypes.METHOD_DEF) once correctly Mocking getIdentInChildren(node)
+    
+    node.setType(TokenTypes.LITERAL_IF);
+    temp = check.cyclomaticComplexity;
+    check.classifyNode(node);
+    if (check.cyclomaticComplexity != temp + 1) fail("cyclomaticComplexity was not incremented given a LITERAL_IF node");
   }
 
   @Test

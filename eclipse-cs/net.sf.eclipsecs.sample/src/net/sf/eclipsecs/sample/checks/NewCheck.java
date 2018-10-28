@@ -256,7 +256,10 @@ public class NewCheck extends AbstractCheck {
       uniqueOperands.add(node.getText());
     }
     
-    if (node.getLineNo() > programLength) programLength = node.getLineNo();
+    if (node.getLineNo() > programLength) 
+    {
+      programLength = node.getLineNo();
+    }
    
     // Methods
     if (node.getType() == TokenTypes.METHOD_DEF) {
