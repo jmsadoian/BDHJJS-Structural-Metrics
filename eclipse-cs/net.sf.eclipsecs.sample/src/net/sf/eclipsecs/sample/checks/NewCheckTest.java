@@ -181,11 +181,6 @@ public class NewCheckTest {
   }
 
   @Test
-  public void testLateProcessing() {
-    fail("Not yet implemented");
-  }
-
-  @Test
   public void testGetIdentInChildren() {
     DetailAST head = new DetailAST(); 
     DetailAST head2Child = new DetailAST();
