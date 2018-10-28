@@ -75,7 +75,8 @@ public class NewCheck extends AbstractCheck {
     return new int[] { TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
   }
 
-  // Setters
+  // Setters: Automatically pull the configured limits from checkstyle
+  // Semantics
   public void setMaxlinesofcomments(int limit) {
     maxlinesofcomments = limit;
   }  
@@ -129,7 +130,7 @@ public class NewCheck extends AbstractCheck {
   }
   
   
-  // Checks
+  // Visit Token is called by Checkstyle
   @Override
   public void visitToken(DetailAST ast) {
     DetailAST head = ast.getFirstChild();
@@ -139,6 +140,7 @@ public class NewCheck extends AbstractCheck {
     logErrors();
   }  
   
+  // Initialize Counts will make sure that all counters are reset
   public void initializeCounts() {
     // Comments
     commentContents = 0;
@@ -170,6 +172,7 @@ public class NewCheck extends AbstractCheck {
     maintainabilityIndex = 0;
   }
   
+  // Recursively Search AST will search the entire AST classifying each node
   public void recursivelySearchAST(DetailAST node)
   {
     if (node != null)
@@ -196,6 +199,7 @@ public class NewCheck extends AbstractCheck {
     }
   }
   
+  // Classify node classifies a provided node and increments relevant counters
   public void classifyNode(DetailAST node) {
     if (node.getType() == TokenTypes.COMMENT_CONTENT) {
       commentContents += 1;
@@ -267,7 +271,7 @@ public class NewCheck extends AbstractCheck {
     }      
   }
   
-  // We need a late search for tasks that require a second search over the AST
+  // Late Recursive Search is used for tasks that require a second search over the AST
   public void lateRecursivelySearchAST(DetailAST node)
   {
     if (node != null)
@@ -309,6 +313,7 @@ public class NewCheck extends AbstractCheck {
     } 
   }
   
+  // Get IDENT in Children will try to find an IDENT node in the children of a given node
   public String getIdentInChildren(DetailAST node)
   {
     node = node.getFirstChild();
@@ -323,6 +328,7 @@ public class NewCheck extends AbstractCheck {
     return "";
   }
   
+  // Log Errors checks for any rule violations and uses checkstyle "log()" to report them
   public void logErrors() {
     // Total Comment Lines
     int totalCommentLines = commentContents + (blockCommentBegins * 2) + blockCommentEnds;
