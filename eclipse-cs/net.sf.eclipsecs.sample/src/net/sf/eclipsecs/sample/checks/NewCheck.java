@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.HashSet;
 
-public class NewCheck extends AbstractCheck {
+public class NewCheck extends AbstractCheck {  
   // Properties
   protected int maxlinesofcomments = 10;
   protected int maxcomments = 10;  
