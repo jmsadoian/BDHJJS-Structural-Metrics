@@ -8,54 +8,54 @@ import java.util.HashSet;
 
 public class NewCheck extends AbstractCheck {
   // Properties
-  private int maxlinesofcomments = 10;
-  private int maxcomments = 10;  
-  private int maxloops = 10;
-  private int maxvariables = 10;
-  private int maxexpressions = 10;
-  private int maxoperators = 10;
-  private int maxoperands = 10;
-  private int maxtypecasts = 10;
+  protected int maxlinesofcomments = 10;
+  protected int maxcomments = 10;  
+  protected int maxloops = 10;
+  protected int maxvariables = 10;
+  protected int maxexpressions = 10;
+  protected int maxoperators = 10;
+  protected int maxoperands = 10;
+  protected int maxtypecasts = 10;
   // Halstead
-  private int maxhalsteadlength = 10;
-  private int maxhalsteadvocabulary = 10;
-  private int maxhalsteadvolume = 10;
-  private int maxhalsteaddifficulty = 10;
-  private int maxhalsteadeffort = 10;
+  protected int maxhalsteadlength = 10;
+  protected int maxhalsteadvocabulary = 10;
+  protected int maxhalsteadvolume = 10;
+  protected int maxhalsteaddifficulty = 10;
+  protected int maxhalsteadeffort = 10;
   // Methods
-  private int maxlocalmethodrefs = 10;
-  private int maxexternalmethodrefs = 10;
+  protected int maxlocalmethodrefs = 10;
+  protected int maxexternalmethodrefs = 10;
   // Maintainability Index
-  private int maxmaintainabilityindex = 0;
+  protected int maxmaintainabilityindex = 0;
   
   // Counts
-  private int commentContents = 0;
-  private int singleLineComments = 0;
-  private int blockCommentBegins = 0;
-  private int blockCommentEnds = 0;
+  protected int commentContents = 0;
+  protected int singleLineComments = 0;
+  protected int blockCommentBegins = 0;
+  protected int blockCommentEnds = 0;
   // Misc
-  private int loopCount = 0;  
-  private int variableCount = 0;  
-  private int expressionCount = 0;
-  private int typecastCount = 0;
+  protected int loopCount = 0;  
+  protected int variableCount = 0;  
+  protected int expressionCount = 0;
+  protected int typecastCount = 0;
   // Halstead
-  private int operatorCount = 0;
-  private int operandCount = 0;
-  private int halsteadLength = 0;
-  private HashSet<Integer> uniqueOperators = new HashSet<>(); 
-  private HashSet<String> uniqueOperands = new HashSet<>(); 
-  private int halsteadVocabulary = 0;
-  private int programLength = 0;
-  private double halsteadVolume = 0;
-  private double halsteadDifficulty = 0;
-  private double halsteadEffort = 0;
+  protected int operatorCount = 0;
+  protected int operandCount = 0;
+  protected int halsteadLength = 0;
+  protected HashSet<Integer> uniqueOperators = new HashSet<>(); 
+  protected HashSet<String> uniqueOperands = new HashSet<>(); 
+  protected int halsteadVocabulary = 0;
+  protected int programLength = 0;
+  protected double halsteadVolume = 0;
+  protected double halsteadDifficulty = 0;
+  protected double halsteadEffort = 0;
   // Methods // TODO: Handle methods that are in secondary classes
-  private HashSet<String> localMethods = new HashSet<>();
-  private int localMethodRefsCount = 0;
-  private int externalMethodRefsCount = 0;
+  protected HashSet<String> localMethods = new HashSet<>();
+  protected int localMethodRefsCount = 0;
+  protected int externalMethodRefsCount = 0;
   // Maintainability Index
-  private int cyclomaticComplexity = 0;
-  private double maintainabilityIndex = 0;
+  protected int cyclomaticComplexity = 0;
+  protected double maintainabilityIndex = 0;
 
   // Overrides
   @Override
@@ -419,4 +419,5 @@ public class NewCheck extends AbstractCheck {
       log(0, "maintainabilityindexlimit", maxmaintainabilityindex, maintainabilityIndex);
     }      
   }
+
 }
