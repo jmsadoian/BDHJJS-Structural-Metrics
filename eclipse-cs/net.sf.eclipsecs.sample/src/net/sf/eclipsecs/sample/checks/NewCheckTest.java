@@ -2,12 +2,19 @@ package net.sf.eclipsecs.sample.checks;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.annotation.Generated;
+
 import org.junit.Test;
+import org.omg.CORBA.INTERNAL;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import antlr.collections.AST;
+import antlr.collections.List;
 
 public class NewCheckTest {
   NewCheck check = new NewCheck();
@@ -92,10 +99,37 @@ public class NewCheckTest {
     
     if (completeErrorMessage.length() > 1) fail(completeErrorMessage);
   }
+  
+  private class flagNode{
+    DetailAST node;
+    int flag;
+    
+    public flagNode() {
+      node = new DetailAST();
+      flag = 0;
+    }
+    
+  }
+  
+  private DetailAST generateTestTree() {
+    
+    flagNode root = new flagNode();
+    flagNode initNode = new flagNode();
+    root.node.setFirstChild(initNode.node);
+  
+    for(int i=0;i<3;i++) {
+      flagNode temp = new flagNode();
+
+    }
+    
+    return node;
+  }
+  
 
   @Test
   public void testRecursivelySearchAST() {
-    fail("Not yet implemented");
+    //fail("Not yet implemented");
+    DetailAST node = generateTestTree();
   }
 
   @Test
