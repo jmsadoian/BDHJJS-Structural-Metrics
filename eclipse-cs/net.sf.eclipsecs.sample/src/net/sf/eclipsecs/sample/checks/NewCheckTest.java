@@ -189,10 +189,4 @@ public class NewCheckTest {
   public void testGetIdentInChildren() {
     fail("Not yet implemented");
   }
-
-  @Test
-  public void testLogErrors() {
-    fail("Not yet implemented");
-  }
-
 }
