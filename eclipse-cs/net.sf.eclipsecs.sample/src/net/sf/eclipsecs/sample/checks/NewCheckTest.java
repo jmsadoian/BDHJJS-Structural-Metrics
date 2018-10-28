@@ -187,6 +187,11 @@ public class NewCheckTest {
 
   @Test
   public void testGetIdentInChildren() {
-    fail("Not yet implemented");
+    DetailAST head = new DetailAST(); 
+    DetailAST child = new DetailAST();
+    child.setType(TokenTypes.IDENT);
+    head.addChild(child);
+    
+    if (check.getIdentInChildren(head) == "") fail("no IDENT node found in tree that contains IDENT node");
   }
 }
