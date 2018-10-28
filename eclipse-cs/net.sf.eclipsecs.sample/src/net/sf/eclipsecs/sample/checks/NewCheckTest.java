@@ -188,10 +188,30 @@ public class NewCheckTest {
   @Test
   public void testGetIdentInChildren() {
     DetailAST head = new DetailAST(); 
+    DetailAST head2Child = new DetailAST();
+    DetailAST head3Child = new DetailAST();
     DetailAST child = new DetailAST();
+    DetailAST child1 = new DetailAST();
+    DetailAST child2 = new DetailAST();
+    DetailAST child3 = new DetailAST();
+    DetailAST child4 = new DetailAST();
+    DetailAST child5 = new DetailAST();
     child.setType(TokenTypes.IDENT);
+    child2.setType(TokenTypes.IDENT);
+    child5.setType(TokenTypes.IDENT);
     head.addChild(child);
+    head2Child.addChild(child1);
+    head2Child.addChild(child2);
+    head3Child.addChild(child3);
+    head3Child.addChild(child4);
+    head3Child.addChild(child5);
     
     if (check.getIdentInChildren(head) == "") fail("no IDENT node found in tree that contains IDENT node");
+    
+    
+    if (check.getIdentInChildren(head2Child) == "") fail("no IDENT node found in tree that contains IDENT node");
+    
+    
+    if (check.getIdentInChildren(head3Child) == "") fail("no IDENT node found in tree that contains IDENT node");
   }
 }
