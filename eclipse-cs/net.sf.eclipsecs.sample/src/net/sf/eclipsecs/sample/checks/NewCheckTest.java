@@ -2,6 +2,7 @@ package net.sf.eclipsecs.sample.checks;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.junit.Test;
@@ -93,10 +94,113 @@ public class NewCheckTest {
     if (completeErrorMessage.length() > 1) fail(completeErrorMessage);
   }
 
+  private DetailAST generateTestTree2() {
+    DetailAST root = new DetailAST();
+    root.setType(TokenTypes.METHOD_CALL);
+    
+    ArrayList<DetailAST> nodes = new ArrayList<DetailAST>();
+    for(int i=0; i<30; i++) {
+      DetailAST node = new DetailAST();
+      node.setType(TokenTypes.METHOD_CALL);
+      nodes.add(node);
+    }
+    
+    for(int i=0; i<5;i++) {
+      root.addChild(nodes.get(i));
+    }
+    
+    DetailAST node1 = root.getFirstChild();
+    
+    for(int i=5; i<10;i++) {
+      node1.addChild(nodes.get(i));
+    }
+    
+    DetailAST node2 = node1.getNextSibling();
+    
+    for(int i=10; i<15;i++) {
+      node2.addChild(nodes.get(i));
+    }
+    
+    DetailAST node3 = node2.getNextSibling();
+    
+    for(int i=15; i<20;i++) {
+      node3.addChild(nodes.get(i));
+    }
+    
+    DetailAST node4 = node3.getNextSibling();
+    
+    for(int i=20; i<25;i++) {
+      node4.addChild(nodes.get(i));
+    }
+    
+    DetailAST node5 = node4.getNextSibling();
+    
+    for(int i=25; i<30;i++) {
+      node5.addChild(nodes.get(i));
+    }
+    return root;
+    
+  }
+  
+  private DetailAST generateTestTree() {
+    DetailAST root = new DetailAST();
+    root.setType(TokenTypes.SINGLE_LINE_COMMENT);
+    
+    ArrayList<DetailAST> nodes = new ArrayList<DetailAST>();
+    for(int i=0; i<30; i++) {
+      DetailAST node = new DetailAST();
+      node.setType(TokenTypes.SINGLE_LINE_COMMENT);
+      nodes.add(node);
+    }
+    
+    for(int i=0; i<5;i++) {
+      root.addChild(nodes.get(i));
+    }
+    
+    DetailAST node1 = root.getFirstChild();
+    
+    for(int i=5; i<10;i++) {
+      node1.addChild(nodes.get(i));
+    }
+    
+    DetailAST node2 = node1.getNextSibling();
+    
+    for(int i=10; i<15;i++) {
+      node2.addChild(nodes.get(i));
+    }
+    
+    DetailAST node3 = node2.getNextSibling();
+    
+    for(int i=15; i<20;i++) {
+      node3.addChild(nodes.get(i));
+    }
+    
+    DetailAST node4 = node3.getNextSibling();
+    
+    for(int i=20; i<25;i++) {
+      node4.addChild(nodes.get(i));
+    }
+    
+    DetailAST node5 = node4.getNextSibling();
+    
+    for(int i=25; i<30;i++) {
+      node5.addChild(nodes.get(i));
+    }
+    return root;
+    
+  }
+  
   @Test
   public void testRecursivelySearchAST() {
-    fail("Not yet implemented");
-  }
+    check.initializeCounts();
+    DetailAST root = generateTestTree();
+    check.recursivelySearchAST(root);
+    assertEquals(check.singleLineComments, 31);
+    
+    check.initializeCounts();
+    check.recursivelySearchAST(null);
+    assertEquals(check.singleLineComments,0);  
+    }
 
   @Test
   public void testClassifyNode() 
@@ -177,8 +281,15 @@ public class NewCheckTest {
 
   @Test
   public void testLateRecursivelySearchAST() {
-    fail("Not yet implemented");
-  }
+    check.initializeCounts();
+    DetailAST root = generateTestTree2();
+    check.lateRecursivelySearchAST(root);
+    assertEquals(check.externalMethodRefsCount, 31);
+    
+    check.initializeCounts();
+    check.lateRecursivelySearchAST(null);
+    assertEquals(check.localMethodRefsCount,0); 
+    }
 
   @Test
   public void testGetIdentInChildren() {
