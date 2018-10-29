@@ -111,25 +111,64 @@ public class NewCheckTest {
     
   }
   
-  private DetailAST generateTestTree() {
+  private flagNode generateTestTree() {
+    
+    ArrayList<flagNode> nodes  = new ArrayList<flagNode>();
     
     flagNode root = new flagNode();
     flagNode initNode = new flagNode();
     root.node.setFirstChild(initNode.node);
+    boolean addChild = true;
+    boolean atRoot = true;
+    int parent = 0;
   
-    for(int i=0;i<3;i++) {
-      flagNode temp = new flagNode();
+    for(int i=0;i<10;i++) {
+      flagNode newNode = new flagNode();
+      nodes.add(newNode);
+      if(addChild==true) {
+        if(atRoot == true) {
+          nodes.add(new flagNode());
+          nodes.add(new flagNode());
+          nodes.add(new flagNode());
+
+          root.node.setFirstChild(nodes.get(0).node);
+          nodes.get(0).node.setNextSibling(nodes.get(1).node);
+          nodes.get(1).node.setNextSibling(nodes.get(2).node);
+          i=2;
+        }
+        else
+          nodes.get(parent).node.setFirstChild(newNode.node);
+          
+        addChild = false;
+      }
+      
+      //three children per parent
+      if((i+1)%3==0) {
+        addChild=true;
+        DetailAST temp = nodes.get(i).node.getParent();
+        if(atRoot == true) {
+          parent = 0;
+          atRoot = false;
+        }
+        else
+          parent = nodes.indexOf(temp)+1; 
+      }
+      else {
+        if(i>2) {
+          nodes.get(i-1).node.setNextSibling(newNode.node);
+        }
+      }
 
     }
-    
-    return node;
+        
+    return root;
   }
   
 
   @Test
   public void testRecursivelySearchAST() {
     //fail("Not yet implemented");
-    DetailAST node = generateTestTree();
+    flagNode root = generateTestTree();
   }
 
   @Test
